@@ -35,3 +35,10 @@ ash_intro-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore language server stuff
+/.expert
+/.elixir_ls
+
+
+# Ignore env file which is used for storing secrets.
+/.env

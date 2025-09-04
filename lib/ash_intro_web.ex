@@ -91,6 +91,9 @@ defmodule AshIntroWeb do
       alias Phoenix.LiveView.JS
       alias AshIntroWeb.Layouts
 
+      # Chat compoents
+      import AshIntroWeb.ChatComponents
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end

@@ -1,6 +1,7 @@
 defmodule AshIntroWeb.Router do
   use AshIntroWeb, :router
 
+  import Oban.Web.Router
   use AshAuthentication.Phoenix.Router
 
   import AshAuthentication.Plug.Helpers
@@ -35,13 +36,21 @@ defmodule AshIntroWeb.Router do
       #
       # If an authenticated user must *not* be present:
       # on_mount {AshIntroWeb.LiveUserAuth, :live_no_user}
+
+      # Chat routes
+      live "/", ChatLive
+      live "/chat", ChatLive
+      live "/chat/:conversation_id", ChatLive
+
+      # Event routes
+      live "/events", EventsLive
+      live "/chat/:conversation_id/events", EventsLive
     end
   end
 
   scope "/", AshIntroWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
     auth_routes AuthController, AshIntro.Accounts.User, path: "/auth"
     sign_out_route AuthController
 
@@ -94,6 +103,12 @@ defmodule AshIntroWeb.Router do
       live_dashboard "/dashboard", metrics: AshIntroWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+
+    scope "/" do
+      pipe_through :browser
+
+      oban_dashboard("/oban")
+    end
   end
 
   if Application.compile_env(:ash_intro, :dev_routes) do
@@ -103,6 +118,16 @@ defmodule AshIntroWeb.Router do
       pipe_through :browser
 
       ash_admin "/"
+    end
+  end
+
+  if Application.compile_env(:ash_intro, :dev_routes) do
+    import Clarity.Router
+
+    scope "/clarity" do
+      pipe_through :browser
+
+      clarity "/"
     end
   end
 end

@@ -41,7 +41,11 @@ defmodule AshIntro.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:usage_rules, "~> 0.1"},
+      {:clarity, "~> 0.1"},
+      {:oban_web, "~> 2.0"},
+      {:oban, "~> 2.0"},
+      {:ash_oban, "~> 0.4"},
+      {:usage_rules, "~> 0.1", only: [:dev]},
       {:bcrypt_elixir, "~> 3.0"},
       {:picosat_elixir, "~> 0.2"},
       {:sourceror, "~> 1.8"},
@@ -79,7 +83,10 @@ defmodule AshIntro.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:earmark, "~> 1.4.48"},
+      {:finch, "~> 0.20"},
+      {:floki, "~> 0.38"}
     ]
   end
 
@@ -102,6 +109,7 @@ defmodule AshIntro.MixProject do
         "esbuild ash_intro --minify",
         "phx.digest"
       ],
+      rules: "usage_rules.sync CLAUDE.md --all",
       precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"]
     ]
   end

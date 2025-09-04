@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :ash_oban, pro?: false
+
+config :ash_intro, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [
+    default: 10,
+    chat_responses: [limit: 10],
+    crawls: [limit: 1]
+  ],
+  repo: AshIntro.Repo,
+  plugins: [{Oban.Plugins.Cron, []}]
+
 config :ash,
   allow_forbidden_field_for_relationships_by_default?: true,
   include_embedded_source_by_default?: false,
@@ -51,7 +64,7 @@ config :spark,
 config :ash_intro,
   ecto_repos: [AshIntro.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [AshIntro.Accounts]
+  ash_domains: [AshIntro.Events, AshIntro.Chat, AshIntro.Accounts]
 
 # Configures the endpoint
 config :ash_intro, AshIntroWeb.Endpoint,

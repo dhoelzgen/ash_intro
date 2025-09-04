@@ -1,4 +1,5 @@
 import Config
+config :ash_intro, Oban, testing: :manual
 config :ash_intro, token_signing_secret: "yAEAPuv8CcxUbETT8Ex683aFTkqeC0Ws"
 config :bcrypt_elixir, log_rounds: 1
 config :ash, policies: [show_policy_breakdowns?: true], disable_async?: true

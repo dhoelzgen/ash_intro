@@ -11,7 +11,13 @@ defmodule AshIntro.Application do
       AshIntroWeb.Telemetry,
       AshIntro.Repo,
       {DNSCluster, query: Application.get_env(:ash_intro, :dns_cluster_query) || :ignore},
+      {Oban,
+       AshOban.config(
+         Application.fetch_env!(:ash_intro, :ash_domains),
+         Application.fetch_env!(:ash_intro, Oban)
+       )},
       {Phoenix.PubSub, name: AshIntro.PubSub},
+      {Finch, name: AshIntro.Scraping.Finch},
       # Start a worker by calling: AshIntro.Worker.start_link(arg)
       # {AshIntro.Worker, arg},
       # Start to serve requests, typically the last entry

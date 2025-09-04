@@ -1,18 +1,18 @@
-# AshIntro
+# AshIntro Demo App for Elixir Ruhr Meetp
 
-To start your Phoenix server:
+This is the demo application used to showcase Ash and Ash AI during the [Elixir Ruhr Meetup](https://elixir-ruhr.dev) on September 25th, 2025.
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Setup
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Just check it out, and run `mix setup`.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+You need credentials for OpenAI set up in your env as `OPENAI_API_KEY`, easiest start it with
 
-## Learn more
+```
+OPENAI_API_KEY=sk-your-key iex -S mix phx.server
+```
 
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+If you have questions:
+
+* Join the [Elixir Ruhr Discord](discord.gg/TRqQcxRMjq)
+* Contact me on [Bluesky](https://bsky.app/profile/dhoelzgen.dev) or [X](https://x.com/dhoelzgen)

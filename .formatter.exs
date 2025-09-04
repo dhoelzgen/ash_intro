@@ -1,5 +1,8 @@
 [
   import_deps: [
+    :clarity,
+    :ash_oban,
+    :oban,
     :ash_ai,
     :ash_admin,
     :ash_authentication_phoenix,
