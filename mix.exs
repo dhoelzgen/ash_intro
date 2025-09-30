@@ -109,7 +109,7 @@ defmodule AshIntro.MixProject do
         "esbuild ash_intro --minify",
         "phx.digest"
       ],
-      rules: "usage_rules.sync CLAUDE.md --all",
+      rules: "usage_rules.sync CLAUDE.md --all --inline usage_rules:all --link-to-folder deps",
       precommit: ["compile --warning-as-errors", "deps.unlock --unused", "format", "test"]
     ]
   end
